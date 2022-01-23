@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tradutor dothraki</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <h1 class="title">Tradutor Inglês > Dothraki</h1>
+                <form>
+                    <div>
+                        <input type="text" name="text" id="text" placeholder="Texto..." required>
+                    </div>
+                </form>
+                <button class="button" id="translate">Traduzir</button>
+                <p class="result" id="result"></p>
+            </div>
+        </div>
+    </body>
+    <script>
+        document.getElementById("translate").addEventListener("click", function( event ) {
+            let value = document.getElementById('text').value
+            fetch(`https://api.funtranslations.com/translate/dothraki.json?text=${value}`)
+            .then(response => response.json())
+            .then(response => {
+                document.getElementById('result').innerHTML = `"${response.contents.translated}"`
+            })
+        }, false);
+    </script>
+</html>
